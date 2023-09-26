@@ -1,0 +1,33 @@
+﻿using INCHEQS.Common;
+using INCHEQS.Security.Account;
+using System.Collections.Generic;
+using INCHEQS.DataAccessLayer;
+//using INCHEQS.DataAccessLayer.ApplicationDbContext;
+using System.Data.SqlClient;
+
+namespace INCHEQS.Security.AuditTrail {
+    public class AuditTrailDao : IAuditTrailDao {
+
+        private readonly ApplicationDbContext dbContext;
+        public AuditTrailDao(ApplicationDbContext dbContext) {
+            this.dbContext = dbContext;
+        }
+
+        public void Log(string remarks, AccountModel currentUserAccount = null) {
+            Dictionary<string, dynamic> keyValue = new Dictionary<string, dynamic>();
+            if (currentUserAccount != null) {
+                keyValue.Add("fldUserId", StringUtils.Trim(currentUserAccount.UserId));
+                keyValue.Add("fldBankCode", StringUtils.Trim(currentUserAccount.BankCode));
+                keyValue.Add("fldTaskId", StringUtils.Trim(currentUserAccount.TaskId));
+            } else {
+                keyValue.Add("fldUserId", "");
+                keyValue.Add("fldBankCode", "");
+            }
+            keyValue.Add("fldRemarks", remarks);
+            keyValue.Add("fldCreateTimeStamp", DateUtils.GetCurrentDatetimeForSql());
+
+            dbContext.ConstructAndExecuteInsertCommand("tblAuditTrail", keyValue);
+        }
+    }
+
+}

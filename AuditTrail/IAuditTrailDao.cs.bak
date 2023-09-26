@@ -1,0 +1,8 @@
+﻿using INCHEQS.Security.Account;
+
+
+namespace INCHEQS.Security.AuditTrail {
+    public interface IAuditTrailDao {
+        void Log(string remarks , AccountModel currentUserAccount);
+    }
+}
