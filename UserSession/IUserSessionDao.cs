@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+
+namespace INCHEQS.Security.UserSession {
+    public interface IUserSessionDao {
+        void ClearSession(string sSessionUserID);
+        DataTable ListAll(string userId);
+        void DeleteSessionForUser(string userId, string sessionId);
+        bool HasManyAndNotAllowedConcurrent(string userId, string sessionId);
+        bool isLoginSessionExceededAndRefresh(string userId, string sessionId);
+        bool IsMultipleUserLoggedInAndConcurrentNotAllowed(string userId, string isAllowedConcurrentConnection, int sessionTimeout);
+        void updateSessionTrack(string userId, string userSessionId);
+        void InsertSessionToOcs(string userId, string userSessionId);
+    }
+}

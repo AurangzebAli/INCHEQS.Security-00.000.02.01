@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CAD046FB-934B-4E6D-927D-85FDA7C99553}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>INCHEQS.Security</RootNamespace>
+    <AssemblyName>INCHEQS.Security</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\Packages\External\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSSecurity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=561141ee79855b0c, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\03-MVC_WEB\02-INCHEQS\02-Trunk\0001.000.000.00\INCHEQS\App_Start\bin\ICSSecurity.dll</HintPath>
+    </Reference>
+    <Reference Include="INCHEQS.Common">
+      <HintPath>..\..\..\..\..\..\03-MVC_WEB\02-INCHEQS\02-Trunk\0001.000.000.00\INCHEQS\App_Start\bin\INCHEQS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="INCHEQS.DataAccessLayer">
+      <HintPath>..\..\..\..\..\..\03-MVC_WEB\02-INCHEQS\02-Trunk\0001.000.000.00\INCHEQS\App_Start\bin\INCHEQS.DataAccessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="INCHEQS.DataAccessLayer.OCS">
+      <HintPath>..\..\..\..\..\..\03-MVC_WEB\02-INCHEQS\02-Trunk\0001.000.000.00\INCHEQS\App_Start\bin\INCHEQS.DataAccessLayer.OCS.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\..\..\..\03-MVC_WEB\02-INCHEQS\02-Trunk\0001.000.000.00\INCHEQS\bin\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\AccountModel.cs" />
+    <Compile Include="Account\ILoginAccountService.cs" />
+    <Compile Include="Account\LoginAccountService.cs" />
+    <Compile Include="AuditTrail\AuditTrailDao.cs" />
+    <Compile Include="AuditTrail\IAuditTrailDao.cs" />
+    <Compile Include="Group\GroupDao.cs" />
+    <Compile Include="Group\GroupModel.cs" />
+    <Compile Include="Group\IGroupDao.cs" />
+    <Compile Include="Password\IPasswordDao.cs" />
+    <Compile Include="Password\PasswordDao.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Locale.Designer.cs">
+      <DependentUpon>Locale.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Locale.ms-MY.Designer.cs">
+      <DependentUpon>Locale.ms-MY.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="SecurityProfile\ISecurityProfileDao.cs" />
+    <Compile Include="SecurityProfile\SecurityProfileDao.cs" />
+    <Compile Include="SecurityProfile\SecurityProfileModel.cs" />
+    <Compile Include="SystemProfile\ISystemProfileDao.cs" />
+    <Compile Include="SystemProfile\SystemProfileDao.cs" />
+    <Compile Include="UserSession\IUserSessionDao.cs" />
+    <Compile Include="UserSession\UserSessionDao.cs" />
+    <Compile Include="User\IUserDao.cs" />
+    <Compile Include="User\UserDao.cs" />
+    <Compile Include="User\UserModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Locale.ms-MY.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Locale.ms-MY.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Locale.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Locale.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Group\vssver2.scc" />
+    <None Include="Resources\vssver2.scc" />
+    <None Include="SystemProfile\vssver2.scc" />
+    <None Include="User\vssver2.scc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
